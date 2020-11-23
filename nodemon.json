@@ -1,0 +1,7 @@
+{
+  "events": {
+    "restart": "tsc"
+  },
+  "watch": ["src"],
+  "ext": "ts,json,handlebars"
+}

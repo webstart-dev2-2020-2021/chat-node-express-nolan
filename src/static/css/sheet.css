@@ -1,0 +1,19 @@
+i.create { content: url("../create.svg"); width: 15px }
+
+.bg-black {
+    background-color: black!important
+}
+
+.bg-black a, .bg-black p, .bg-black .small, .bg-black label, .bg-black .text-muted, .bg-black h5, .bg-black h4, .bg-black h3, .bg-black h2, .bg-black h1 {
+	color: white!important;
+	margin-bottom: 0;
+}
+
+.bg-black a:hover {
+	font-weight:bolder!important;
+	text-decoration: none
+}
+
+.max-spacing {
+	letter-spacing: 3px;
+}
