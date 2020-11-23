@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <meta name="description" content="Ninja EncryptedChat permit to join public rooms and talk about your passions and hobbies">
+  	<meta name="author" content="?">
+  	<link rel="icon" href="{{favicon}}" />
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="static/css/sheet.css">
+</head>
+<body class="overflow-hidden">
+	<a href="/" class="d-flex align-items-center bg-black text-decoration-none py-1 px-3">
+		<span class="text-uppercase font-weight-bold max-spacing small mr-2">Ninja</span>
+		<hr class="bg-white w-100" />
+		<img src="static/logo-white-raw.png" width="13" alt="" class="d-inline-block align-middle ml-2">
+	</a>
+	<section class="container-fluid">
+		<div class="row row-offcanvas row-offcanvas-left vh-100">
+			<div class="col-md-2 col-lg-2 bg-black sidebar-offcanvas h-auto overflow-auto px-3 py-4">
+				<div class="d-flex justify-content-between align-items-center">
+					<p class="text-uppercase font-weight-bold">Channels Overview</p>
+					<i class="create">.</i>
+				</div>
+				{{#if channels}}
+	            <ul class="nav flex-column sticky-top mt-3" id="sidebar">
+	              	{{#each channels}}
+	              	<li>{{this}}</li>
+	              	{{/each}}
+	            </ul>
+	            {{else}}
+	            <small class="text-muted">You seems haven't joined any channels...</small>
+	            {{/if}}
+	        </div>
+	        {{{body}}}
+		</div>
+	</section>
+</body>
+</html>
