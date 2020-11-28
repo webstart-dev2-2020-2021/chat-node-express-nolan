@@ -2,7 +2,7 @@
   "name": "Ninja",
   "version": "1.0.0",
   "description": "encrypted chat for everyone",
-  "main": "index.js",
+  "main": "build/app.js",
   "scripts": {
     "ninja": "tsc && nodemon build/app.js"
   },
