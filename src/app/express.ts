@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as handlebars from 'express-handlebars';
+import * as expressHandlebars from 'express-handlebars';
 import errorHandler = require("errorhandler");
 import {NinjaRoute} from "./ninjaroute";
 import bodyParser = require("body-parser");
@@ -25,8 +25,14 @@ export class Express {
     	const router = express.Router();
     	NinjaRoute.init(router);
 
+        let handlebars = expressHandlebars.create({
+            helpers: {
+                toCapitalize: function (str) { return str.toLowerCase().charAt(0).toUpperCase() + str.slice(1); },
+            }
+        });
+
         this.app
-            .engine('handlebars', handlebars())
+            .engine('handlebars', handlebars.engine)
 	        .set('view engine', 'handlebars')
 	        .enable('view cache')
 	        .enable('trust proxy')

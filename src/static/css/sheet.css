@@ -10,8 +10,7 @@ i.create { content: url("../create.svg"); width: 15px }
 }
 
 .bg-black a:hover {
-	font-weight:bolder!important;
-	text-decoration: none
+	text-decoration: underline;
 }
 
 .max-spacing {

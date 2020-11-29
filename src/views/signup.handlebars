@@ -1,9 +1,10 @@
 <section class="container-fluid d-flex justify-content-center bg-black">
 	<div class="row row-offcanvas vh-100 align-items-center">
-		<form class="form p-5 border-light">
-			<div class="d-flex flex-column align-items-center">
-	      		<img class="border border-light" src="static/logo-white.png" alt="" width="72" height="72">
-	      		<h1 class="h3 mt-2 mb-5 font-weight-bold">Ninja</h1>
+		<form action="/signup" class="form p-5 border-light" method="post">
+			<div class="d-flex align-items-center mb-4">		
+	      		<h1 class="h3 mx-3 font-weight-bold max-spacing text-uppercase">Ninja</h1>
+	      		<hr class="bg-white w-100" />
+	      		<img src="static/logo-white.png" alt="" width="72">
 	      	</div>
 	      	<div class="form-group">
 			    <label for="email">Email</label>
@@ -26,7 +27,7 @@
 				  Your password must be identical on both cases
 				</small>
 			</div>
-			<button class="btn btn-lg btn-outline-light btn-block mt-4 font-weight-bold" type="submit">
+			<button class="btn btn-lg btn-outline-light btn-block rounded-0 mt-4 font-weight-bold" type="submit">
 				Sign up
 			</button>
 	      	<small class="form-text text-muted"><a href="/signin">You already own an account ? Click here to connect.</a></small>

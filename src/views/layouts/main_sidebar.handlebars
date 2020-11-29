@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{title}}</title>
+    <title>Ninja - {{toCapitalize page}}</title>
     <meta name="description" content="Ninja EncryptedChat permit to join public rooms and talk about your passions and hobbies">
   	<meta name="author" content="?">
   	<link rel="icon" href="{{favicon}}" />
@@ -9,29 +9,36 @@
   	<link rel="stylesheet" href="static/css/sheet.css">
 </head>
 <body class="overflow-hidden">
-	<a href="/" class="d-flex align-items-center bg-black text-decoration-none py-1 px-3">
+	<a href="/chat" class="d-flex fixed-top align-items-center bg-black text-decoration-none py-1 px-3">
 		<span class="text-uppercase font-weight-bold max-spacing small mr-2">Ninja</span>
 		<hr class="bg-white w-100" />
-		<img src="static/logo-white-raw.png" width="13" alt="" class="d-inline-block align-middle ml-2">
+		<img src="static/logo-white-raw.png" width="13" alt="" class="d-inline-block ml-2">
 	</a>
 	<section class="container-fluid">
-		<div class="row row-offcanvas row-offcanvas-left vh-100">
-			<div class="col-md-2 col-lg-2 bg-black sidebar-offcanvas h-auto overflow-auto px-3 py-4">
-				<div class="d-flex justify-content-between align-items-center">
-					<p class="text-uppercase font-weight-bold">Channels Overview</p>
-					<i class="create">.</i>
-				</div>
-				{{#if channels}}
-	            <ul class="nav flex-column sticky-top mt-3" id="sidebar">
-	              	{{#each channels}}
-	              	<li>{{this}}</li>
-	              	{{/each}}
-	            </ul>
-	            {{else}}
-	            <small class="text-muted">You seems haven't joined any channels...</small>
-	            {{/if}}
+		<div class="row row-offcanvas row-offcanvas-left vh-100 pt-4">
+			<div class="col-md-2 col-lg-2 bg-black d-flex flex-column justify-content-between sidebar-offcanvas h-100 overflow-auto px-3 py-4">
+				<div>
+					<div class="d-flex justify-content-between align-items-center">
+						<p class="text-uppercase font-weight-bold">Channels Overview</p>
+						<i class="create"></i>
+					</div>
+					{{#if channels}}
+		            <ul class="nav flex-column sticky-top mt-3" id="sidebar">
+		              	{{#each channels}}
+		              	<li>{{this}}</li>
+		              	{{/each}}
+		            </ul>
+		            {{else}}
+		            <small class="text-muted">You seems haven't joined any channels...</small>
+		            {{/if}}
+		        </div>
+		        <form action="/disconnect" class="form" method="post">
+	            	<button class="btn btn-lg d-flex justify-content-center btn-outline-light btn-block rounded-0 p-0" type="submit">
+						<span class="font-weight-bold mb-1">Disconnect</span>
+					</button>
+				</form>
 	        </div>
-	        {{{body}}}
+	        {{{body}}}    
 		</div>
 	</section>
 </body>
