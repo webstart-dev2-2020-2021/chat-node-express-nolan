@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {Channel} from './channel';
+import {NinjaData} from './data';
 import {User} from './user';
 
 export class NinjaRoute {
@@ -12,7 +12,7 @@ export class NinjaRoute {
         const ninja = new NinjaRoute();
 
         router.all('*', (request, response, next) => {
-            response.locals['page'] = String(request.url.split('/')[1]);
+            response.locals['page'] = String(request.url.split('/')[1]);    
             response.locals['favicon'] = "static/favicon.png";
             next();
         });
@@ -22,9 +22,9 @@ export class NinjaRoute {
         router.get("/signin", (request: Request, response: Response) => ninja.viewSignin(request, response));
         router.get("/admin", (request: Request, response: Response) => ninja.viewAdmin(request, response));
 
-        router.post("/disconnect", (request: Request, response: Response) => ninja.disconnectUser(request, response));
-        router.post("/signup", (request: Request, response: Response) => ninja.addUser(request, response));
-        router.post("/signin", (request: Request, response: Response) => ninja.connectUser(request, response));
+        router.post("/disconnect", (request: Request, response: Response) => ninja.postDisconnect(request, response));
+        router.post("/signup", (request: Request, response: Response) => ninja.postSignup(request, response));
+        router.post("/signin", (request: Request, response: Response) => ninja.postSignin(request, response));
 
         router.all("*", (request: Request, response: Response) => response.redirect("/chat"));
     }
@@ -37,46 +37,37 @@ export class NinjaRoute {
         response.render('signin');
     }
 
-    private viewAdmin(request: Request, response: Response) {
+    private async viewAdmin(request: Request, response: Response) {
         response.locals['layout'] = "main_sidebar";
-        response.locals['channels'] = this.getChannels(request, response);  
+
+        response.locals['channels'] = await NinjaData.getChannelsByUserId();
+        response.locals['users'] = await NinjaData.getUsers();
 
         response.render('admin');
     }
 
-    private viewChat(request: Request, response: Response) {
+    private async viewChat(request: Request, response: Response) {
         response.locals['layout'] = "main_sidebar";
-        response.locals['channels'] = this.getChannels(request, response);  
+
+        response.locals['channels'] = await NinjaData.getChannelsByUserId();
 
         response.render('chat');
     }
 
-    private getChannels(request: Request, response: Response) {
-        let channels: Array<Channel> = [];
-        return channels;
+    private async postSignup(request: Request, response: Response) {
+        const id = Number(await NinjaData.addUser(request));
+
+        const user = new User(id, request.body.email, request.body.password);
+        user.connect(response);
     }
 
-    private getUsers(request: Request, response: Response) {
-        let users: Array<User> = [];
-        return users;
+    private async postSignin(request: Request, response: Response) {
+        const user = await NinjaData.verifyUser(request);
+        user.connect(response);
     }
 
-    private disconnectUser(request: Request, response: Response) {
-        // disconnect user
-        response.redirect("/signin");
-    }
-
-    private connectUser(request: Request, response: Response) {
-        // sqlite check and connect user
-        response.redirect("/chat");
-    }
-
-    private addUser(request: Request, response: Response) {
-        // sqlite insertion
-        this.connectUser(request, response);
-    }
-
-    private deleteUserById(request: Request, response: Response) {
-        this.viewAdmin(request, response);
+    private async postDisconnect(request: Request, response: Response) {
+        const user = new User(null, null, null);
+        user.disconnect(response);
     }
 }

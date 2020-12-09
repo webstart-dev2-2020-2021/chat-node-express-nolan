@@ -2,28 +2,28 @@
 	<div class="row row-offcanvas vh-100 align-items-center">
 		<form action="/signin" class="form p-5 border-light" method="post">
 			<div class="d-flex align-items-center mb-4">		
-				<h1 class="h3 mx-3 font-weight-bold max-spacing text-uppercase">Ninja</h1>
-				<hr class="bg-white w-100" />
-				<img src="static/logo-white.png" alt="" width="72">
+	      		<h1 class="h3 mx-3 font-weight-bold max-spacing text-uppercase">Ninja</h1>
+	      		<hr class="bg-white w-100" />
+	      		<img src="static/logo-white.png" alt="" width="72">
+	      	</div>
+	      	<div class="form-group">
+			    <label for="email">Email</label>
+			    <input type="email" name="email" class="form-control rounded-0" required="">
+			    <small id="emailHelpInline" class="form-text text-muted">
+			      Email must be valid
+			    </small>
 			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" id="email" class="form-control rounded-0" required="">
-				<small id="emailHelpInline" class="form-text text-muted">
-				Email must be valid
-				</small>
-			</div>
-			<div class="form-group">
-				<label for="passsword">Password</label>
-				<input type="password" id="password" class="form-control rounded-0" required="">
+	      	<div class="form-group">
+			    <label for="passsword">Password</label>
+				<input type="password" name="password" class="form-control rounded-0" required="">
 				<small id="passwordHelpBlock" class="form-text text-muted">
 				  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji
 				</small>
-			</div>	
-			<button class="btn btn-lg btn-outline-light btn-block mt-4 rounded-0 font-weight-bold" type="submit">
-				Log in
-			</button>
-			<small class="form-text text-muted"><a href="/signup">You didn't own any account ? Click here to sign up and join our community.</a></small>
-		</form>
+			</div>
+	      	<button class="btn btn-lg btn-outline-light btn-block mt-4 rounded-0 font-weight-bold" type="submit">
+	      		Log in
+	      	</button>
+	      	<small class="form-text text-muted"><a href="/signup">You didn't own any account ? Click here to sign up and join our community.</a></small>
+	    </form>
 	</div>
 </section>

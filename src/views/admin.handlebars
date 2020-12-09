@@ -1,2 +1,11 @@
 <main class="col main pt-5 mt-3 h-100 overflow-auto">
+	{{#if users}}
+    <div class="border p-3">
+      	{{#each users}}
+      	<h6>{{id}}: {{email}} {{password}}</h6>
+      	{{/each}}
+    </div>
+    {{else}}
+    <p>No users founded</p>
+    {{/if}}
 </main>
