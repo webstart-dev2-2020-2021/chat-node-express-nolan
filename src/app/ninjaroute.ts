@@ -59,6 +59,8 @@ export class NinjaRoute {
 
         const user = new User(id, request.body.email, request.body.password);
         user.connect(response);
+        console.log(user.email);
+        console.log(user.password);
     }
 
     private async postSignin(request: Request, response: Response) {
