@@ -7,6 +7,9 @@
 	<link rel="icon" href="{{favicon}}" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/css/sheet.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body class="overflow-hidden">
 	<a href="/" class="d-flex align-items-center bg-black text-decoration-none py-1 px-3">
@@ -14,6 +17,14 @@
 		<hr class="bg-white w-100" />
 		<img src="static/logo-white-raw.png" width="13" alt="" class="d-inline-block align-middle ml-2">
 	</a>
+	{{#if alert}}
+	<div class="position-absolute alert alert-danger alert-dismissible fade show rounded-0 mx-3" role="alert">
+		{{ alert }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+	{{/if}}
 	{{{body}}}
 </body>
 </html>

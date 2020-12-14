@@ -30,10 +30,20 @@ export class NinjaRoute {
     }
 
     private viewSignup(request: Request, response: Response) {
+        if (request.app.get('alert')) {    
+            response.locals['alert'] = request.app.get('alert');
+            request.app.set('alert', null);
+        } 
+
         response.render('signup');
     }
 
     private viewSignin(request: Request, response: Response) {
+        if (request.app.get('alert')) {
+            response.locals['alert'] = request.app.get('alert');
+            request.app.set('alert', null);
+        }
+
         response.render('signin');
     }
 
@@ -55,21 +65,35 @@ export class NinjaRoute {
     }
 
     private async postSignup(request: Request, response: Response) {
-        const id = Number(await NinjaData.addUser(request));
+        if (request.body.email.includes("@") 
+            && /\d/.test(request.body.password)
+            && request.body.password.length > 8 
+            && request.body.password.length < 20) {
 
-        const user = new User(id, request.body.email, request.body.password);
-        user.connect(response);
-        console.log(user.email);
-        console.log(user.password);
+            const id = Number(await NinjaData.addUser(request));
+
+            const user = new User(id, request.body.email, request.body.password, false);
+            user.connect(response);
+            console.log(user.email);
+            console.log(user.password);
+        } else {
+            request.app.set('alert', "Votre email et mot de passe doivent être valides.");
+            response.redirect("/signup");
+        }
     }
 
     private async postSignin(request: Request, response: Response) {
-        const user = await NinjaData.verifyUser(request);
-        user.connect(response);
+        if (request.body.email.includes("@")) {
+            const user = await NinjaData.verifyUser(request);
+            user.connect(response);
+        } else {
+            request.app.set('alert', "Votre email doit être valide.");
+            response.redirect("/signin");
+        }
     }
 
     private async postDisconnect(request: Request, response: Response) {
-        const user = new User(null, null, null);
+        const user = new User(null, null, null, null);
         user.disconnect(response);
     }
 }

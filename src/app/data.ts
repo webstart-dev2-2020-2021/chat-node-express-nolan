@@ -14,7 +14,7 @@ export class NinjaData {
 		return new Promise<void>((resolve, reject) => {
 
 		NinjaData.database()
-			.run(`INSERT INTO users VALUES(?, ?, ?)`, [null, request.body.email, request.body.password], function(error) {
+			.run(`INSERT INTO users VALUES(?, ?, ?, ?)`, [null, request.body.email, request.body.password, false], function(error) {
 			    if (error) {
 			    	reject(console.log(error.message));
 			    } else {
@@ -37,7 +37,7 @@ export class NinjaData {
 
 			NinjaData.database()
 				.each(`SELECT * FROM users`, function(error, row) {			    	
-			    	users.push(new User(row.ID, row.EMAIL, row.PASSWORD));
+			    	users.push(new User(row.ID, row.EMAIL, row.PASSWORD, row.IS_ADMIN));
 
 			    }, (error, count) => {
 
@@ -50,7 +50,7 @@ export class NinjaData {
 
 	public static verifyUser(request) {
 
-		const user = new User(null, null, null);
+		const user = new User(null, null, null, null);
 		return user;
 	}
 

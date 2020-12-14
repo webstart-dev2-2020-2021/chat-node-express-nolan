@@ -16,3 +16,17 @@ i.create { content: url("../create.svg"); width: 15px }
 .max-spacing {
 	letter-spacing: 3px;
 }
+
+.material-icons:hover {
+	border-bottom: 2px solid white;
+}
+
+.note {
+    padding:10px;
+    border-left:6px solid;
+}
+
+.note-primary {
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0.05);
+}

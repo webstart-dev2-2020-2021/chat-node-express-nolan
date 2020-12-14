@@ -7,6 +7,7 @@
   	<link rel="icon" href="{{favicon}}" />
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   	<link rel="stylesheet" href="static/css/sheet.css">
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="overflow-hidden">
 	<a href="/chat" class="d-flex fixed-top align-items-center bg-black text-decoration-none py-1 px-3">
@@ -32,13 +33,33 @@
 		            <small class="text-muted">You seems haven't joined any channels...</small>
 		            {{/if}}
 		        </div>
-		        <form action="/disconnect" class="form" method="post">
-	            	<button class="btn btn-lg d-flex justify-content-center btn-light btn-block rounded-0 p-0" type="submit">
-						<span class="text-uppercase font-weight-bold mb-1">Disconnect</span>
-					</button>
-				</form>
+		        <div class="d-flex justify-content-between">
+		        	<form action="/admin" method="get">
+			        	<button class="btn text-light">
+								<span class="material-icons">admin_panel_settings</span>
+						</button>
+					</form>
+					<div class="d-flex">
+			        	<form action="/disconnect" method="post">
+		            		<button class="btn text-light" type="submit">
+								<span class="material-icons">no_meeting_room</span>
+							</button>
+						</form>
+						<button class="btn text-light">
+								<span class="material-icons">settings</span>
+						</button>
+					</div>
+		        </div>
 	        </div>
-	        {{{body}}}    
+	        {{#if alert}} 
+	        <div class="position-absolute alert alert-danger alert-dismissible fade show rounded-0 mx-3" role="alert">
+	        	{{ alert }}
+	        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true">&times;</span>
+  				</button>
+	        </div>
+	        {{/if}}
+	        {{{body}}}
 		</div>
 	</section>
 </body>
