@@ -1,5 +1,6 @@
 import {Express, ServerOptions} from './express';
 import * as http from 'http';
+require('dotenv').config('src/static');
 
 const options = {
     static: 'src/static',

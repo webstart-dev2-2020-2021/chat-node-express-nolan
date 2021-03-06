@@ -1,7 +1,8 @@
 import * as express from 'express';
 import * as expressHandlebars from 'express-handlebars';
 import errorHandler = require("errorhandler");
-import {NinjaRoute} from "./ninjaroute";
+import {Route} from "./route";
+import {Database} from "./models/database";
 import bodyParser = require("body-parser");
 import path = require("path");
 
@@ -9,7 +10,7 @@ export interface ServerOptions {
     static: string;
     port: number;
 }
-
+    
 export class Express {
 
     public app: express.Application;
@@ -23,7 +24,7 @@ export class Express {
 
     public config() {
     	const router = express.Router();
-    	NinjaRoute.init(router);
+    	Route.init(router);
 
         let handlebars = expressHandlebars.create({
             helpers: {
@@ -42,6 +43,12 @@ export class Express {
             .use('/static', express.static(__dirname + '/../' + this.options.static))
 	        .use(router)
             .use(errorHandler());
+    }
+
+    private static DATABASE: Database = new Database();
+
+    public static database() {
+        return Express.DATABASE.get();
     }
 
     public static bootstrap(options: ServerOptions): Express {
