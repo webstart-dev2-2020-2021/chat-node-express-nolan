@@ -4,8 +4,8 @@ import {Listeners} from "./models/listeners";
 import * as http from 'http';
 
 const options = {
-    static: 'src/static',
-    port: 8080
+	static: 'src/static',
+	port: 8080
 } as ServerOptions;
 
 const instance = Express.bootstrap(options).app;
@@ -17,4 +17,4 @@ Listeners
 
 server
 	.listen(options.port)
-    .on("listening", () => console.debug('Server listening on port ' + options.port));
+	.on("listening", () => console.debug('Server listening on port ' + options.port));
