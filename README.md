@@ -18,7 +18,7 @@ Basic account
 
 ## Additional informations
 
-The chat is working over multiple rooms. They have to be manually added to the DB, nothing more to make them work.
+The chat is working over multiple rooms. They have to be manually added to the DB, nothing more to make them working.
 
 Nothing is notifying when someone connect cause I've made multiple channels and would just spam every of them but here's a simplified script solution
 
