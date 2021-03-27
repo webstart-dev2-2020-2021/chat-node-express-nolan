@@ -1,29 +1,31 @@
-<section class="container-fluid d-flex justify-content-center bg-black">
-	<div class="row row-offcanvas vh-100 align-items-center">
-		<form action="/signin" class="form p-5 border-light" method="post">
-			<div class="d-flex align-items-center mb-4">		
-	      		<h1 class="h3 mx-3 font-weight-bold max-spacing text-uppercase">Ninja</h1>
-	      		<hr class="bg-white w-100" />
-	      		<img src="static/logo-white.png" alt="" width="72">
-	      	</div>
-	      	<div class="form-group">
-			    <label for="email">Email</label>
-			    <input type="text" name="email" class="form-control rounded-0" required="">
-			    <small id="emailHelpInline" class="form-text text-muted">
-			      Email must be valid
-			    </small>
+<div class="col-12 bg-black">
+	<form action="/signin" class="form p-5" method="post">
+		<div class="d-flex align-items-center mb-4">		
+			<h1 class="fw-bold">Connect to Ninja.</h1>
+		</div>
+		<div class="form-group mb-3">
+			<label class="fw-bold text-uppercase" for="email">Email</label>
+			<input type="text" name="email" class="form-control rounded-0" required="">
+			<small class="form-text text-muted">
+			Email must be valid.
+			</small>
+		</div>
+		<div class="form-group mb-5">
+			<label class="fw-bold text-uppercase" for="passsword">Password</label>
+			<input type="password" name="password" class="form-control rounded-0" required="">
+			<small class="form-text text-muted">
+			Never share your password with anyone.
+			</small>
+		</div>
+		<div class="d-flex justify-content-between mb-3">
+			<div class="w-50">
+				<button class="btn w-100 btn-lg btn-outline-light btn-block rounded-0" type="submit">
+					<span class="text-uppercase text-spacing">connect</span>
+				</button>
 			</div>
-	      	<div class="form-group">
-			    <label for="passsword">Password</label>
-				<input type="password" name="password" class="form-control rounded-0" required="">
-				<small id="passwordHelpBlock" class="form-text text-muted">
-				  Your password must be 8-20 characters long, contain letters and numbers
-				</small>
+			<div class="d-flex align-items-center">
+				<h6 class="mb-1 text-uppercase"><a href="/signup">You didn't own any account ? Click here to sign up and join our community.</a></h6>
 			</div>
-	      	<button class="btn btn-lg btn-outline-light btn-block mt-4 rounded-0 font-weight-bold" type="submit">
-	      		Log in
-	      	</button>
-	      	<small class="form-text text-muted"><a href="/signup">You didn't own any account ? Click here to sign up and join our community.</a></small>
-	    </form>
-	</div>
-</section>
+		</div>
+	</form>
+</div>

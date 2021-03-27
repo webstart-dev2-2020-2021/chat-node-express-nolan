@@ -1,0 +1,64 @@
+<div class="col-12 pb-custom">
+	<div class="bg-black p-5">
+		<div class="d-flex flex-column justify-content-center mb-4">
+			<h1 class="fw-bold mb-3">{{channel.name}}.</h1>	
+			<p>{{channel.description}}</p>
+		</div>
+	</div>
+</div>
+<div class="col-12 pt-custom">
+	<div class="bg-black">
+		<div class="d-flex flex-column justify-content-center">
+			<div id="channel">
+				{{#if messages}}
+					{{#each messages}}
+			      	<div class="d-flex justify-content-between bg-{{../channel.color}} px-5 py-3">
+			      		<p><span class="fw-bold">{{author}}</span> {{content}}</p>
+			      	</div>
+			      	{{/each}}
+				{{/if}}
+			</div>
+		</div>
+		<div class="row px-5 py-4">
+			<div class="col-sm-10 w-100">
+				<input type="text" class="form-control rounded-0" placeholder="Send a message to this channel. Use 'Enter'">
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<script>
+	const message = {
+		author: "{{user.email}}",
+		content: ""
+	}
+
+	const channel = {
+		id: "{{channel.id}}"
+	}
+
+	const socket = io();
+	const input = document.querySelector("input");
+	const channelDOM = document.getElementById("channel")
+
+	input.addEventListener("keypress", sendMessage);
+
+	function sendMessage(event) {
+		if (event.key == "Enter" && input.value != "") {
+			message.content = input.value;
+
+        	socket.emit("message", message, channel);
+        	input.value = "";
+		}
+    }
+
+    socket.on("update", (message, channel) => {
+    	console.log(message, channel);
+    	channelDOM.insertAdjacentHTML('beforeend', `
+			<div class="d-flex justify-content-between bg-` + channel.color + ` px-5 py-3">
+	      		<p><span class="fw-bold">` + message.author + `</span> ` + message.content + `</p>
+	      	</div>
+  		`)
+	});
+</script>

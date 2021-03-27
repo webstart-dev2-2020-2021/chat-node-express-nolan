@@ -1,15 +1,20 @@
 import {Express, ServerOptions} from './express';
+import {Server, Socket} from "socket.io";
+import {Listeners} from "./models/listeners";
 import * as http from 'http';
-require('dotenv').config('src/static');
 
 const options = {
     static: 'src/static',
     port: 8080
 } as ServerOptions;
 
-const server = Express.bootstrap(options).app;
+const instance = Express.bootstrap(options).app;
+const server = http.createServer(instance);
 
-http.createServer(server)
-    .listen(options.port)
+Listeners
+	.build(new Server(server))
+	.init();
+
+server
+	.listen(options.port)
     .on("listening", () => console.debug('Server listening on port ' + options.port));
-

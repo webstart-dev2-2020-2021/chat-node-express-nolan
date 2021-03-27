@@ -1,0 +1,22 @@
+<div>
+	<h5 class="fw-bold mb-3">Channels overview.</h5>
+	{{#if channels}}
+		{{#each channels}}
+      	<a href="/channel/{{id}}" class="mb-2 text-decoration-none">
+      		<p class="mb-1">{{name}}</p>
+      	</a>
+      	{{/each}}
+    {{else}}
+    	<small class="text-muted">No chat rooms were found.</small>
+	{{/if}}
+</div>
+<div class="d-flex justify-content-between">
+	<div class="d-flex justify-content-between">
+		<a href="/hello"><span class="text-white material-icons">explore</span></a>
+	</div>
+	<div class="d-flex justify-content-between">
+		{{#if user.is_admin}}<a href="/admin"><span class="text-white material-icons">category</span></a>{{/if}}
+		<a href="/disconnect"><span class="text-white material-icons">highlight_off</span></a>
+		<span class="text-white material-icons">build</span>
+	</div>
+</div>

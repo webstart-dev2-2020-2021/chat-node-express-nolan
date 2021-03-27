@@ -1,9 +1,34 @@
-<main class="col main pt-5 mt-3 h-100 overflow-auto">
-	{{#if users}}
-      	{{#each users}}
-      	<div class="note note-primary w-100">{{id}}: {{email}} {{password}} {{is_admin}}</div>
-      	{{/each}}
-    {{else}}
-    <p>No users found</p>
-    {{/if}}
-</main>
+<div class="d-flex">
+	<div class="col-6 pe-custom">
+		<div class="bg-black py-5">
+			<div class="d-flex align-items-center mb-4 px-5">		
+				<h1 class="fw-bold">Users.</h1>
+			</div>
+			<div>
+				{{#if users}}
+					{{#each users}}
+			      	<div class="d-flex justify-content-between bg-blue px-5 py-2 fw-bold">
+			      		<p class="w-75">ID : {{id}} | EMAIL : {{email}} | IS_ADMIN : {{is_admin}}</p>
+			      	</div>
+			      	{{/each}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="col-6 ps-custom">
+		<div class="bg-black py-5">
+			<div class="d-flex align-items-center mb-4 px-5">		
+				<h1 class="fw-bold">Channels.</h1>
+			</div>
+			<div>
+				{{#if channels}}
+					{{#each channels}}
+			      	<div class="d-flex justify-content-between bg-purple px-5 py-2 fw-bold">
+			      		<p class="w-75">ID : {{id}} | NAME : {{name}}</p>
+			      	</div>
+			      	{{/each}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
