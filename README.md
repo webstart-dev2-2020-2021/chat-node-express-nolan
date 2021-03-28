@@ -9,7 +9,7 @@ Account with privileges
 ``password: SEYMR97uY44sbXi``
 
 Basic account
-``login: superutilisateur1``
+``login: superutilisateur1@gmail.com``
 ``password: MqVzN8BEtbpN8qV``
 
 ## Online informations
